@@ -14,6 +14,8 @@ Each turn, a player repeatedly rolls a dice until either a 1 is rolled or the pl
 
 The first player to score 100 or more points wins.
 
+## Behavioral Specifications
+
 | Behavior | Input | Outcome |
 |----------|-------|---------|
 | Player 1 clicks ROLL button   | Click ROLL button | Random number between 1 and 6 is generated |

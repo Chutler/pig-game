@@ -4,7 +4,7 @@
 
 function diceRoll() {
   var randomRoll = Math.floor(Math.random() * 6) +1;
-  document.getElementById("roll1").innerHTML = randomRoll;
+  document.getElementById("roll").innerHTML = randomRoll;
   turnResult(randomRoll);
 }
 
