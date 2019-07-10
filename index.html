@@ -11,11 +11,11 @@
     <div class="container">
       <div class="row">
         <div class="col-md mb-4">
-          <h1 class="display-4">Who Wants to Play Pig Dice?</h1>
+          <h1 class="display-4">Everybody Loves Pig Dice</h1>
         </div>
       </div>
       <div class="row">
-        <div class="col-md-3 border border-dark">
+        <div class="col-md-3">
           <div class="playerOneStats">
             <h2>Player One</h2>
             <p>Total Score: <span id="score1"></span></p>
@@ -25,15 +25,16 @@
           <div id="playerOneButton">
             <button class="btn btn-outline-success" onclick="diceRoll()">Roll</button>
             <button class="btn btn-outline-secondary" onclick="hold()">Hold</button>
-            <!-- <p id="roll1"></p> -->
+            <!-- <button id="player1-roll" class="btn btn-outline-success">Roll</button>
+            <button id="player1-hold" class="btn btn-outline-secondary">Hold</button> -->
           </div> <!-- End Player one div -->
         </div>
-        <div class="col-md-2 border border-dark">
+        <div class="col-md-3">
             <div class="dice-display">
-                <p><span id="roll"></span></p>
+                  <p><span id="roll"></span></p>
             </div>
         </div> <!--End Dice Display Div -->
-        <div class="col-md-3 border border-dark">
+        <div class="col-md-3">
             <div class="playerTwoStats">
               <h2>Player Two</h2>
               <p>Total Score: <span id="score2"></span></p>
@@ -43,7 +44,8 @@
           <div id="playerTwoButton">
             <button class="btn btn-outline-success" onclick="diceRoll()">Roll</button>
             <button class="btn btn-outline-secondary" onclick="hold()">Hold</button>
-            <!-- <p id="roll2"></p> -->
+            <!-- <button id="player2-roll" class="btn btn-outline-success">Roll</button>
+            <button id="player2-hold" class="btn btn-outline-secondary">Hold</button> -->
           </div> <!-- End Player two div -->
         </div>
       </div>
