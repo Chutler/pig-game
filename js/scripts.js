@@ -11,7 +11,8 @@
 var playerOne = [] // I don't think an array is the best way to handle this
 var playerTwo = [] // probably just empty variables to hold the total?
 
-  // function for a player turn
+  // function for a player turn - I don't have anything calling this constructor yet
+  // need something to create the two players
 function Player(turn) {
   this.roll = 0;
   this.tempscore = 0;
