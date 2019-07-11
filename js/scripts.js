@@ -1,44 +1,33 @@
 // Biz in the back
+var isPlayer1Turn = true
 
-  // function for rolling the dice
-  function diceRoll() {
-    var randomRoll = Math.floor(Math.random() * 6) +1;
-    document.getElementById("roll").innerHTML = randomRoll; // To display roll in center column
-    turnResult(randomRoll); // need to pass this to either player...
-  }
-
-// set up variables to hold total score ?
-var playerOne = [] // I don't think an array is the best way to handle this
-var playerTwo = [] // probably just empty variables to hold the total?
-
-  // function for a player turn - I don't have anything calling this constructor yet
-  // need something to create the two players
-function Player(turn) {
-  this.roll = 0;
-  this.tempscore = 0;
-  this.totalscore = 0;
-  this.turn = turn;
-  this.playerName; // capture and use actual names?
+//Player Object
+function Player() {
+  this.diceRoll = 0;
+  this.turnScore = 0;
+  this.totalScore = 0;
 }
 
-  // Prototype for rolling a 1 
-Player.prototype.rollone = function() {
-  if (this.roll === 1) {
-  this.tempscore = 0;
-  alert("You rolled a 1! Your turn is over!")
-  // function to change the player? 
+Player.prototype.Roll = function() {
+  this.diceRoll = Math.floor(Math.random() * 6) +1;
+  if (this.diceRoll === 1) {
+    this.turnScore = 0;
+    isPlayer1Turn = !isPlayer1Turn
   } else {
-  this.tempscore += this.roll;
+    this.turnScore += this.diceRoll;
   }
-}
+};
 
-  // Prototype for a hold
-Player.prototype.hold = function () {
-  this.totalscore += this.tempscore;
-  this.tempscore = 0;
-  // function to change the player?
-  alert("Turn over - next player...");
-}
+Player.prototype.Hold = function() {
+  this.totalScore += this.turnScore;
+  if (this.totalScore >= 10) {
+    winner = isPlayer1Turn ? 'Player 1' : 'Player2';
+    alert(winner + 'wins!');
+  } else {
+    this.turnScore = 0;
+    isPlayer1Turn = !isPlayer1Turn;
+  }
+};
 
   // Monday's functions for each Player 1 turn
 function turnResult(randomRoll) {
@@ -51,51 +40,45 @@ function turnResult(randomRoll) {
     $('#playerTwoButton').show();
     // function turnResult2();
   }
-}
-  // Monday's functions for each Player 2 turn
-function turnResult2(randomRoll) {
-  if (randomRoll > 1) {
-    playerTwo.push(randomRoll);
-  } else {
-    alert("End of turn"); // wrong print method
-    $('#playerTwoButton').hide();
-    $('#playerOneButton').show();
-    console.log(playerTwo);
-  }
-}
 
 // Interface in the front
 
 $(document).ready(function() {
 
-  $("button#player1-roll").click(function(event){
-    player1.roll = diceRoll();
-    $("#roll").text(player1.roll);
-    player1.rollone();
-    $("#round1").text(player1.tempscore);
+  var player1 = new Player();
+  var player2 = new Player();
+
+  $('player1-total-score').text(0);
+  $('player2-total-score').text(0);
+
+  $('button#player-roll').click(function() {
+    if (isPlayer1Turn) {
+      player1.diceRoll();
+      $('#roll').text(player1.currentRoll);
+      $('#round1').text(player1.turnScore);
+    } else {
+      player2.diceRoll();
+      $('#roll').text(player2.currentRoll);
+      $('#round2').text(player2.turnScore);
+    }
   });
 
-  $("button#player2-roll").click(function(event){
-    player2.roll = diceRoll();
-    $("#roll").text(player2.roll);
-    player2.rollone();
-    $("#round2").text(player2.tempscore);
+  $('button#player-hold').click(function() {
+    if (isPlayer1Turn) {
+      player1.hold();
+      $('#roll').text('');
+      $('#round1').text('');
+      $("#score1").text(player1.totalscore);
+    } else {
+      player2.hold();
+      $('#roll').text('');
+      $('#round2').text('');
+      $("#score2").text(player2.totalscore);
+    }
   });
-
-  $("button#player1-hold").click(function(event){
-    player1.hold();
-    $("#score1").text(player1.totalscore);
-    $("#round1").empty();
-    $("#roll").empty();
-    player1.winnerCheck();
-  });
-
-  $("button#player2-hold").click(function(event){
-    player2.hold();
-    $("#score2").text(player2.totalscore);
-    $("#round2").empty();
-    $("#roll").empty();
-    player2.winnerCheck();
+  
+  $('button#reset').click(function() {
+    location.reload();
   });
 
 });

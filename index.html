@@ -13,22 +13,19 @@
         <div class="col-md mb-4">
           <h1 class="display-4">Everybody Loves Pig Dice</h1>
         </div>
-      </div>
+      </div> <!-- End head title row -->
       <div class="row">
         <div class="col-md-3">
           <div class="playerOneStats">
             <h2>Player One</h2>
             <p>Total Score: <span id="score1"></span></p>
             <p>Current Round: <span id="round1"></span></p>
-            <!-- <p>Current Roll: <span id="roll1"></span></p> -->
           </div>
           <div id="playerOneButton">
-            <button class="btn btn-outline-success" onclick="diceRoll()">Roll</button>
-            <button class="btn btn-outline-secondary" onclick="hold()">Hold</button>
-            <!-- <button id="player1-roll" class="btn btn-outline-success">Roll</button>
-            <button id="player1-hold" class="btn btn-outline-secondary">Hold</button> -->
+            <button id="player-roll" class="btn btn-outline-success">Roll</button>
+            <button id="player-hold" class="btn btn-outline-secondary">Hold</button>
           </div> <!-- End Player one div -->
-        </div>
+        </div> <!-- End Player one col -->
         <div class="col-md-3">
             <div class="dice-display">
                   <p><span id="roll"></span></p>
@@ -42,14 +39,17 @@
               <!-- <p>Current Roll: <span id="roll2"></span></p> -->
             </div>
           <div id="playerTwoButton">
-            <button class="btn btn-outline-success" onclick="diceRoll()">Roll</button>
-            <button class="btn btn-outline-secondary" onclick="hold()">Hold</button>
-            <!-- <button id="player2-roll" class="btn btn-outline-success">Roll</button>
-            <button id="player2-hold" class="btn btn-outline-secondary">Hold</button> -->
+            <!-- <button class="btn btn-outline-success" onclick="diceRoll()">Roll</button>
+            <button class="btn btn-outline-secondary" onclick="hold()">Hold</button> -->
+            <button id="player-roll" class="btn btn-outline-success">Roll</button>
+            <button id="player-hold" class="btn btn-outline-secondary">Hold</button>
           </div> <!-- End Player two div -->
-        </div>
+        </div> <!-- End Player two col -->
+      </div> <!-- End game row -->
+      <div class="col-md">
+        <button id="reset" class="btn btn-outline-primary">Reset</button>
       </div>
 
-    </div>
+    </div> <!-- End Container -->
   </body>
 </html>
