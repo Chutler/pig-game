@@ -30,7 +30,7 @@ Player.prototype.Hold = function() {
   }
 };
 
-Player.prototype.Turn = function() {
+function playerTurn() {
   if (isPlayer1Turn = !isPlayer1Turn) {
     $('#playerOneButton').hide();
     $('#playerTwoButton').show();
@@ -38,7 +38,7 @@ Player.prototype.Turn = function() {
     $('#playerOneButton').show();
     $('#playerTwoButton').hide();
   }
-}
+};
 
 // Need to create funtion to check active player and show that players buttons while hiding inactive
 
@@ -75,11 +75,13 @@ $(document).ready(function() {
 
   $('button#player-roll').click(function() {
     if (isPlayer1Turn) {
+      // playerTurn();
       player1.Roll();
       $('#roll').text(player1.diceRoll);
       $('#round1').text(player1.turnScore);
     } else {
       player2.Roll();
+      // playerTurn();
       $('#roll').text(player2.diceRoll);
       $('#round2').text(player2.turnScore);
     }
