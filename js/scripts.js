@@ -21,13 +21,24 @@ Player.prototype.Roll = function() {
 Player.prototype.Hold = function() {
   this.totalScore += this.turnScore;
   if (this.totalScore >= 10) {
-    winner = isPlayer1Turn ? 'Player 1' : 'Player2';
-    alert(winner + 'wins!');
+    winner = isPlayer1Turn ? ' PLAYER 1' : ' PLAYER 2';
+    alert(winner + ' WINS!');
+    location.reload();
   } else {
     this.turnScore = 0;
     isPlayer1Turn = !isPlayer1Turn;
   }
 };
+
+Player.prototype.Turn = function() {
+  if (isPlayer1Turn = !isPlayer1Turn) {
+    $('#playerOneButton').hide();
+    $('#playerTwoButton').show();
+  } else {
+    $('#playerOneButton').show();
+    $('#playerTwoButton').hide();
+  }
+}
 
 // Need to create funtion to check active player and show that players buttons while hiding inactive
 
@@ -38,7 +49,7 @@ Player.prototype.Hold = function() {
 //   if (randomRoll > 1) {
 //     playerOne.push(randomRoll);
 //   } else {
-//     alert("End of turn"); // wrong print method
+//     alert("End of turn"); 
 //     console.log(playerOne); // return sum of array to a 3rd div
 //     $('#playerOneButton').hide();
 //     $('#playerTwoButton').show();
@@ -50,45 +61,42 @@ Player.prototype.Hold = function() {
 // Interface in the front
 
 $(document).ready(function() {
-  debugger;
   $(":button").click(function() {
-    var player1 = new Player();
-    var player2 = new Player(); 
-    debugger;
+    // Using any button click to create the new objects to start the game. 
+    // Likely user clicks Player1 Roll btn
   });
-  // Using any button click to create the new objects to start the game.  
-  // However the vars appear to be local an unavailable outside of the function.
-  // Not sure how to create var to create object this way and be global...
+
+  var player1 = new Player();
+  var player2 = new Player(); 
+  debugger;
 
   $('#score1').text(0);
   $('#score2').text(0);
-  // $('#roll').text(5); // test value for styling
 
   $('button#player-roll').click(function() {
     if (isPlayer1Turn) {
-      player1.diceRoll();
+      player1.Roll();
       $('#roll').text(player1.diceRoll);
       $('#round1').text(player1.turnScore);
     } else {
-      player2.diceRoll();
+      player2.Roll();
       $('#roll').text(player2.diceRoll);
       $('#round2').text(player2.turnScore);
     }
   });
 
-  
 
   $('button#player-hold').click(function() {
     if (isPlayer1Turn) {
-      player1.hold();
+      player1.Hold();
       $('#roll').text('');
       $('#round1').text('');
-      $("#score1").text(player1.totalscore);
+      $("#score1").text(player1.totalScore);
     } else {
-      player2.hold();
+      player2.Hold();
       $('#roll').text('');
       $('#round2').text('');
-      $("#score2").text(player2.totalscore);
+      $("#score2").text(player2.totalScore);
     }
   });
   
